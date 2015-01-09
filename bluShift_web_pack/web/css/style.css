@@ -88,9 +88,9 @@ body{
 	border-bottom: solid;
 	border-bottom-width: 5px;
 	border-bottom-color: #FFCC16;
-	position: fixed;
+	position: absolute;
 	width: 100%;
-	z-index: 100;
+	z-index: 101;
 }
 
 .services {
@@ -520,7 +520,7 @@ body{
 }
 .team-member h4 a{
 	color: #383838;
-	font-size: 2.5em;
+	font-size: 1.5em;
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	text-transform: uppercase;
 	margin: 0.5em 0 0 0;
@@ -635,7 +635,7 @@ body{
 .contact-head h3{
 	color: #D3D0D0;
 	font-size: 4.5em;
-	font-family: 'trump_town_proregular';
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	text-transform: uppercase;
 }
 .contact-head p{
