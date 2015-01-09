@@ -9,7 +9,7 @@ $subject = "blushiftss.com message from " . $name . " at " . $email;
 
 //$mail("support@blushiftss.com", $subject, $mssg);
 
-if($mail("scarter121988@gmail.com", $subject, $mssg))
+if(mail("scarter121988@gmail.com", $subject, $mssg))
 {
     $echo "test sucessful";
 }else
