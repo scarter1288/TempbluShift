@@ -4,9 +4,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php
-echo phpinfo();
-?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -408,12 +405,12 @@ echo phpinfo();
 					<p>Please send us an email with any inquiries you have as to the nature of our services or to set up an appointment.</p>	
 				</div>
 				<div class="contatct-form">
-					<form name="contact-email" method="post" action="./index.php">
+					<form name="contact-email" method="post" action="web/index.php">
 						
 						<input name="name" type="text" value="Name :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name :';}" >
 						<input name="email" type="text" value="Email :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email :';}">
 						<textarea name="mssg" rows="2" cols="70" onfocus="if(this.value == 'Message :') this.value='';" onblur="if(this.value == '') this.value='Message :';" >Message :</textarea>
-						<input type="submit" name="submit" value="ok" />
+						<input type="submit" value="Send" />
 					</form>
 				</div>
 				
@@ -424,47 +421,41 @@ echo phpinfo();
 			$email = $_POST["email"];
 			$name = $_POST["name"];
 			$mssg = $_POST["mssg"];
-			$submit  = $_POST["submit"];
 			
 			$header;
 			$error = "";
 			
 			$subject = "blushiftss.com message from " . $name . " at " . $email;
 			
-			if(strcmp($submit, "ok") == 0)
-			{
-				$header = "From: ". $email;
-				$header .= "Content-Type: text/plain; charset=utf-8";
-				$test = " message: " . $mssg . " name: " . $name . " email: " . $email . " header: " . $header;
-				echo $test;
-				
-				if(strcmp($email, "") == 0)
-				{
-				    //good message
-				    
-				    
-				}
-				if(strcmp($name, "") == 0)
-				{
-				    
-				}
-				if(strcmp($mssg, "") == 0)
-				{
-				    
-				}
-				if(strcmp($error, ""))
-				{
-				    $success = mail("scarter121988@gmail.com", $subject, $mssg, $header);
-				    if($success == true)
-				    {
-					echo "worked";
-				    }
-				}else
-				{
-				    echo "did not work";
-				}
-			}
+			$test = " message: " . $mssg . " name: " . $name . " email: " . $email;
+			echo $test;
 			
+			if(strcmp($email, "") == 0)
+			{
+			    //good message
+			    $header = "From: ". $email;
+			    $header .= "Content-Type: text/plain; charset=utf-8";
+			    
+			}
+			if(strcmp($name, "") == 0)
+			{
+			    
+			}
+			if(strcmp($mssg, "") == 0)
+			{
+			    
+			}
+			if(strcmp($error, ""))
+			{
+			    $success = mail("scarter121988@gmail.com", $subject, $mssg);
+			    if($success == true)
+			    {
+				echo "worked";
+			    }
+			}else
+			{
+			    echo "did not work";
+			}
 			
 			?>
 				

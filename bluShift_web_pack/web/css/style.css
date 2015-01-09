@@ -162,6 +162,52 @@ body{
 .top-service-grids {
 	padding: 7em 0;
 }
+
+/*---about-us------*/
+.about-us {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.about-us p {
+    word-wrap: normal;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+    color: #8A8E8F;
+    
+}
+#more-info-list {
+    text-align: left;
+}
+
+.about-us .button {
+    margin-right: auto;
+    margin-left: auto;
+    width: 8em;
+    padding: 10px;
+    padding-bottom: 25px;
+}
+
+.about-us .button button {
+    height: 60px;
+    width: 100px;
+    border-radius: .5em;
+    font-size: 1em;
+    outline: none;
+    border: none;
+    background-color: #6177B5;
+}
+
+.about-us .button button:hover {
+    background-color: #2D4586;
+    border: solid;
+    border-width: 2px;
+    border-color: #FFCC16;
+    color: #F7FDFF;
+}
 /*---start-gallery-----*/
 .recent-works {
 	background: url(../images/portfolio-bg.jpg) no-repeat;

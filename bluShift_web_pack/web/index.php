@@ -4,6 +4,9 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php
+echo phpinfo();
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -33,7 +36,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<!-- class="active" is default button -->
 							<li><a href="#home" class="scroll">Home</a></li>
 							<li><a href="#services" class="scroll">Services</a></li>
-							<li><a href="#about-us" class="scroll">About Us</a></li>
+							<li><a href="#about-us" id="about-us-link" class="scroll">About Us</a></li>
 							<li><a href="#contact" class="scroll">Contact Us</a></li>
 							<!--<li><a href="#blog" class="scroll">Blog</a></li>
 							<li><a href="#contact" class="scroll">Contact</a></li>-->
@@ -75,6 +78,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="top-service-grid">
 						<a href="#"><img src=" web/images/blushift/pcRepair.png" alt="" /></a>
 						<a href="#"><span>PC Repair</span></a>
+						<a id="about-us"></a>
 						<p>Tired of paying big business prices? bluShift is right around the corner and more than happy to help with any of your IT needs: repair, maintenance, and support. bluShift is your
 						one stop shop for all things IT.</p>
 					</div>
@@ -87,7 +91,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			<!---End-top-grids---->
 			</div>
+			
+			<div class="about-us">
+				<!--<div class="button">
+					
+					<button id="about-us-button" name="about-us" >About Us</button>
+				</div>-->
 				
+				<p id="more-info">
+					bluShift has more than 15 years combined experience helping businesses turn their processes into high-performing systems. We can help your business navigate
+					the ever changing technology landscape. bluShift Software Solutions can help you focus on the things that give you a competitive advantage in the marketplace.
+					 We are  passionate about what we do. Be sure to make the smart choice when evaluating your technology needs.
+				</p>
+			</div>
 			</div>
 			<!---start-recent-works----->
 			<!-- RECENT WORKS NOT NEEDED RIGHT NOW
@@ -299,8 +315,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="team-member">
 							<span><a href="#"> </a></span>
 							<h4><a href="#">Stephen Carter</a></h4>
-						   
-							<p>Back-end development, web development</p>
+							<label>COO</label>
+							<p>Web development, web services, database design</p>
 							<ul>
 								<li>
 									<!--
@@ -315,8 +331,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="team-member">
 							<span><a href="#"> </a></span>
 							<h4><a href="#">Pete Morgan</a></h4>
-						   <label></label>
-							<p>Server structure and development, project layout</p>
+							<label>President, CEO</label>
+							<p>Systems analysis and design</p>
 							<ul>
 								<li>
 									<!--
@@ -331,7 +347,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="team-member">
 							<span><a href="#"> </a></span>
 							<h4><a href="#">Joseph Manis</a></h4>
-							<p>Front end design, development</p>
+							<label>CTO</label>
+							<p>Mobile application development, hardware</p>
 							<ul>
 								<li>
 									<!--
@@ -347,10 +364,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="clear"> </div>
 					</div>
 				</div>
-				<div class="about-us">
-					<button name="about-us" >About Us</button>
-					<p>add jquery to have slide down paragraph to talk more about blushift here or maybe somewhere else. i dont care where you put it.</p>
-				</div>
+				
 			</div>
 			<!---//End-meet-our-team---->
 			<!--- start-recent-posts----->
@@ -394,17 +408,61 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<p>Please send us an email with any inquiries you have as to the nature of our services or to set up an appointment.</p>	
 				</div>
 				<div class="contatct-form">
-					<form name="contact-email" method="post" action="web/php/sendMail.php">
+					<form name="contact-email" method="post" action="web/index.php">
 						
-						<input type="text" value="Name :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name :';}" >
-						<input type="text" value="Email :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email :';}">
-						<textarea rows="2" cols="70" onfocus="if(this.value == 'Message :') this.value='';" onblur="if(this.value == '') this.value='Message :';" >Message :</textarea>
+						<input name="name" type="text" value="Name :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name :';}" >
+						<input name="email" type="text" value="Email :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email :';}">
+						<textarea name="mssg" rows="2" cols="70" onfocus="if(this.value == 'Message :') this.value='';" onblur="if(this.value == '') this.value='Message :';" >Message :</textarea>
 						<input type="submit" value="Send" />
 					</form>
 				</div>
 				
 			</div>
 			</div>
+			<!-- CODE TO SEND EMAIL -->
+			<?php
+			$email = $_POST["email"];
+			$name = $_POST["name"];
+			$mssg = $_POST["mssg"];
+			
+			$header;
+			$error = "";
+			
+			$subject = "blushiftss.com message from " . $name . " at " . $email;
+			
+			$test = " message: " . $mssg . " name: " . $name . " email: " . $email;
+			echo $test;
+			
+			if(strcmp($email, "") == 0)
+			{
+			    //good message
+			    $header = "From: ". $email;
+			    $header .= "Content-Type: text/plain; charset=utf-8";
+			    
+			}
+			if(strcmp($name, "") == 0)
+			{
+			    
+			}
+			if(strcmp($mssg, "") == 0)
+			{
+			    
+			}
+			if(strcmp($error, ""))
+			{
+			    $success = mail("scarter121988@gmail.com", $subject, $mssg);
+			    if($success == true)
+			    {
+				echo "worked";
+			    }
+			}else
+			{
+			    echo "did not work";
+			}
+			
+			?>
+				
+
 			<!---End-contact---->
 		</div>
 		<!---End-content---->
