@@ -4,9 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php
-echo phpinfo();
-?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -309,7 +307,7 @@ echo phpinfo();
 				<div class="wrap">
 					<div class="team-head">
 						<h3>Meet Our team</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et quam est. Mauris faucibus tellus ac auctor posuere.</p>
+						<p>With more than 15 years combined experience, bluShift can offer you the technology solutions your business needs.</p>
 					</div>
 					<div class="team-members">
 						<div class="team-member">
@@ -401,25 +399,7 @@ echo phpinfo();
 			</div> -->
 			<!--- //End-recent-posts----->
 			<!---start-contact---->
-			<div class="contact" id="contact">
-				<div class="wrap">
-				<div class="contact-head">
-					<h3>Contact us</h3>
-					<p>Please send us an email with any inquiries you have as to the nature of our services or to set up an appointment.</p>	
-				</div>
-				<div class="contatct-form">
-					<form name="contact-email" method="post" action="./index.php">
-						
-						<input name="name" type="text" value="Name :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name :';}" >
-						<input name="email" type="text" value="Email :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email :';}">
-						<textarea name="mssg" rows="2" cols="70" onfocus="if(this.value == 'Message :') this.value='';" onblur="if(this.value == '') this.value='Message :';" >Message :</textarea>
-						<input type="submit" name="submit" value="ok" />
-					</form>
-				</div>
-				
-			</div>
-			</div>
-			<!-- CODE TO SEND EMAIL -->
+			
 			<?php
 			$email = $_POST["email"];
 			$name = $_POST["name"];
@@ -427,7 +407,9 @@ echo phpinfo();
 			$submit  = $_POST["submit"];
 			
 			$header;
-			$error = "";
+			$noEmail = "";
+			$noname = "";
+			$noMessage = "";
 			
 			$subject = "blushiftss.com message from " . $name . " at " . $email;
 			
@@ -438,21 +420,19 @@ echo phpinfo();
 				$test = " message: " . $mssg . " name: " . $name . " email: " . $email . " header: " . $header;
 				echo $test;
 				
-				if(strcmp($email, "") == 0)
+				if(strcmp($email, "Email:") == 0)
 				{
-				    //good message
-				    
-				    
+				    $noEmail = "Please enter your email address";
 				}
-				if(strcmp($name, "") == 0)
+				if(strcmp($name, "Name:") == 0)
 				{
-				    
+				    $noName = "Please enter your name";   
 				}
-				if(strcmp($mssg, "") == 0)
+				if(strcmp($mssg, "Message:") == 0)
 				{
-				    
+				    $noMessage = "Please enter a message";
 				}
-				if(strcmp($error, ""))
+				if(strcmp($noEmail, "") == 0 || strcmp($noName, "") == 0 || strcmp($noMessage, "") == 0)
 				{
 				    $success = mail("scarter121988@gmail.com", $subject, $mssg, $header);
 				    if($success == true)
@@ -467,6 +447,28 @@ echo phpinfo();
 			
 			
 			?>
+			
+			<div class="contact" id="contact">
+				<div class="wrap">
+				<div class="contact-head">
+					<h3>Contact us</h3>
+					<p>Please send us an email with any inquiries you have as to the nature of our services or to set up an appointment.</p>	
+				</div>
+				<div class="contatct-form">
+					<form name="contact-email" method="post" action="./index.php">
+						
+						<label><?php if(strcmp($noName, "") != 0) { echo $$noName; } ?></label>
+						<input name="name" type="text" value="Name :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name :';}" >
+						<input name="email" type="text" value="Email :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email :';}">
+						<textarea name="mssg" rows="2" cols="70" onfocus="if(this.value == 'Message :') this.value='';" onblur="if(this.value == '') this.value='Message :';" >Message :</textarea>
+						<input type="submit" name="submit" value="ok" />
+					</form>
+				</div>
+				
+			</div>
+			</div>
+			<!-- CODE TO SEND EMAIL -->
+			
 				
 
 			<!---End-contact---->
