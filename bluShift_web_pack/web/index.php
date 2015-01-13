@@ -4,9 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php
-echo phpinfo();
-?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -15,7 +13,7 @@ echo phpinfo();
 		<link rel="shortcut icon" type="image/png" href=" web/images/blushift/blushiftIcon.png" />
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		</script>
-   		<link href=" web/css/style.css" rel="stylesheet" type="text/css" media="all" />
+   		<link href=" web/css/style1.css" rel="stylesheet" type="text/css" media="all" />
    		<link href=" web/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
 		<script src=" web/js/modernizr.custom.28468.js"></script>
 		<link rel="stylesheet" type="text/css" href=" web/css/simptip-mini.css" media="screen,projection" />
@@ -309,12 +307,12 @@ echo phpinfo();
 				<div class="wrap">
 					<div class="team-head">
 						<h3>Meet Our team</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et quam est. Mauris faucibus tellus ac auctor posuere.</p>
+						<p>With more than 15 years combined experience, bluShift can offer you the technology solutions your business needs.</p>
 					</div>
 					<div class="team-members">
 						<div class="team-member">
-							<span><a href="#"> </a></span>
-							<h4><a href="#">Stephen Carter</a></h4>
+							<span><a id="stephen"> </a></span>
+							<h4><a >Stephen Carter</a></h4>
 							<label>COO</label>
 							<p>Web development, web services, database design</p>
 							<ul>
@@ -329,10 +327,10 @@ echo phpinfo();
 							</ul>
 						</div>
 						<div class="team-member">
-							<span><a href="#"> </a></span>
-							<h4><a href="#">Pete Morgan</a></h4>
+							<span><a id="pete"> </a></span>
+							<h4><a>Pete Morgan</a></h4>
 							<label>President, CEO</label>
-							<p>Systems analysis and design</p>
+							<p><br />Systems analysis and design</p>
 							<ul>
 								<li>
 									<!--
@@ -345,8 +343,8 @@ echo phpinfo();
 							</ul>
 						</div>
 						<div class="team-member">
-							<span><a href="#"> </a></span>
-							<h4><a href="#">Joseph Manis</a></h4>
+							<span><a id="joseph"> </a></span>
+							<h4><a>Joseph Manis</a></h4>
 							<label>CTO</label>
 							<p>Mobile application development, hardware</p>
 							<ul>
@@ -401,6 +399,55 @@ echo phpinfo();
 			</div> -->
 			<!--- //End-recent-posts----->
 			<!---start-contact---->
+			
+			<?php
+			$email = $_POST["email"];
+			$name = $_POST["name"];
+			$mssg = $_POST["mssg"];
+			$submit  = $_POST["submit"];
+			
+			$header;
+			$noEmail = "";
+			$noname = "";
+			$noMessage = "";
+			
+			$subject = "blushiftss.com message from " . $name . " at " . $email;
+			
+			if(strcmp($submit, "ok") == 0)
+			{
+				$header = "From: ". $email;
+				$header = $header . "Content-Type: text/plain; charset=utf-8";
+				$test = " message: " . $mssg . " name: " . $name . " email: " . $email . " header: " . $header;
+				//echo $test;
+				
+				if(strcmp($email, "Email:") == 0)
+				{
+				    $noEmail = "Please enter your email address";
+				}
+				if(strcmp($name, "Name:") == 0)
+				{
+				    $noName = "Please enter your name";   
+				}
+				if(strcmp($mssg, "Message:") == 0)
+				{
+				    $noMessage = "Please enter a message";
+				}
+				if(strcmp($noEmail, "") == 0 || strcmp($noName, "") == 0 || strcmp($noMessage, "") == 0)
+				{
+				    $success = mail("scarter121988@gmail.com", $subject, $mssg, $header);
+				    if($success == true)
+				    {
+					//echo "worked";
+				    }
+				}else
+				{
+				    //echo "did not work";
+				}
+			}
+			
+			
+			?>
+			
 			<div class="contact" id="contact">
 				<div class="wrap">
 				<div class="contact-head">
@@ -408,59 +455,20 @@ echo phpinfo();
 					<p>Please send us an email with any inquiries you have as to the nature of our services or to set up an appointment.</p>	
 				</div>
 				<div class="contatct-form">
-					<form name="contact-email" method="post" action="web/index.php">
+					<form name="contact-email" method="post" action="">
 						
+						<label><?php if(strcmp($noName, "") != 0) { echo $$noName; } ?></label>
 						<input name="name" type="text" value="Name :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name :';}" >
 						<input name="email" type="text" value="Email :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email :';}">
 						<textarea name="mssg" rows="2" cols="70" onfocus="if(this.value == 'Message :') this.value='';" onblur="if(this.value == '') this.value='Message :';" >Message :</textarea>
-						<input type="submit" value="Send" />
+						<input type="submit" name="submit" value="ok" />
 					</form>
 				</div>
 				
 			</div>
 			</div>
 			<!-- CODE TO SEND EMAIL -->
-			<?php
-			$email = $_POST["email"];
-			$name = $_POST["name"];
-			$mssg = $_POST["mssg"];
 			
-			$header;
-			$error = "";
-			
-			$subject = "blushiftss.com message from " . $name . " at " . $email;
-			
-			$test = " message: " . $mssg . " name: " . $name . " email: " . $email;
-			echo $test;
-			
-			if(strcmp($email, "") == 0)
-			{
-			    //good message
-			    $header = "From: ". $email;
-			    $header .= "Content-Type: text/plain; charset=utf-8";
-			    
-			}
-			if(strcmp($name, "") == 0)
-			{
-			    
-			}
-			if(strcmp($mssg, "") == 0)
-			{
-			    
-			}
-			if(strcmp($error, ""))
-			{
-			    $success = mail("scarter121988@gmail.com", $subject, $mssg);
-			    if($success == true)
-			    {
-				echo "worked";
-			    }
-			}else
-			{
-			    echo "did not work";
-			}
-			
-			?>
 				
 
 			<!---End-contact---->
@@ -472,7 +480,7 @@ echo phpinfo();
 				<div class="footer-grids">
 					<div class="footer-left">
 						<ul>
-							<li><a class="ftwiter" href="#"> </a></li>
+							<!--<li><a class="ftwiter" href="#"> </a></li>-->
 							<li><a class="fface" href="http://www.facebook.com/blushiftenterprises" target="_blank"> </a></li>
 							<!--<li><a class="fhtml" href="#"> </a></li>
 							<li><a class="fflick" href="#"> </a></li>-->
@@ -480,7 +488,7 @@ echo phpinfo();
 						</ul>
 					</div>
 					<div class="footer-right">
-						<p>Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+						<p>bluShift Software Solutions, LLC</p>
 									<script type="text/javascript">
 						$(document).ready(function() {
 							$().UItoTop({ easingType: 'easeOutQuart' });
