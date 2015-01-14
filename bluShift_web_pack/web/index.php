@@ -416,10 +416,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			if(strcmp($submit, "ok") == 0)
 			{
 				
-				$header = "From: ". $email;
-				$header = $header . "Content-Type: text/plain; charset=utf-8";
-				$test = " message: " . $mssg . " name: " . $name . " email: " . $email . " header: " . $header;
-				//echo $test;
+				$headers = "From: " . strip_tags($email) . "\r\n";
+				$headers .= "Reply-To: ". strip_tags($email) . "\r\n";
+				
+				$headers .= "MIME-Version: 1.0\r\n";
+				$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+				
 				
 				if(strcmp($email, "Email:") == 0)
 				{
