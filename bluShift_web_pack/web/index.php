@@ -415,6 +415,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			
 			if(strcmp($submit, "ok") == 0)
 			{
+				
 				$header = "From: ". $email;
 				$header = $header . "Content-Type: text/plain; charset=utf-8";
 				$test = " message: " . $mssg . " name: " . $name . " email: " . $email . " header: " . $header;
